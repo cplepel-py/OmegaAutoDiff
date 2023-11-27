@@ -17,7 +17,7 @@ public interface Vector<T extends Vector<T>> {
      * @param scalar  The amount by which to scale this vector.
      * @return  This vector scaled by the scalar.
      */
-    public T scale(double scalar);
+    public T scale(Scalar scalar);
 
     /**
      * Negates this vector.
@@ -25,7 +25,7 @@ public interface Vector<T extends Vector<T>> {
      * @return  The addative inverse of this vector.
      */
     public default T negate() {
-        return scale(-1);
+        return scale(new Scalar(-1));
     }
     /**
      * Subtracts a vector from this vector.
@@ -44,7 +44,7 @@ public interface Vector<T extends Vector<T>> {
      * @param divisor  The amount by which to scale down this vector.
      * @return  This vector scaled down by the specified amount.
      */
-    public default T divide(double divisor) {
-        return scale(1 / divisor);
+    public default T divide(Scalar divisor) {
+        return scale(divisor.inverse());
     }
 }
