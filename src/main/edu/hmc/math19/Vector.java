@@ -1,7 +1,17 @@
 package edu.hmc.math19;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /** An element of a real normed vector space */
-public interface Vector<T extends Vector<T>> {
+public abstract class Vector<T extends Vector<T>> {
+    /**
+     * Dictionary of gradients for each child.
+     * 
+     * @key The Child Vector
+     * @Value The assosiated gradient
+     */
+    protected Map<Vector<?>, Vector<?>> parentEdges = new HashMap<>();
     /**
      * Adds this vector and another vector.
      * 
@@ -10,21 +20,21 @@ public interface Vector<T extends Vector<T>> {
      * @param other  The vector to add to this one.
      * @return  The sum of this vector and the other vector.
      */
-    public T add(T other);
+    public abstract T add(T other);
     /**
      * Scales this vector.
      * 
      * @param scalar  The amount by which to scale this vector.
      * @return  This vector scaled by the scalar.
      */
-    public T scale(Scalar scalar);
+    public abstract T scale(Scalar scalar);
 
     /**
      * Negates this vector.
      * 
      * @return  The addative inverse of this vector.
      */
-    public default T negate() {
+    public T negate() {
         return scale(new Scalar(-1));
     }
     /**
@@ -35,7 +45,7 @@ public interface Vector<T extends Vector<T>> {
      * @param other  The vector to subtract from this vector.
      * @return  The difference of this vector and the other vector.
      */
-    public default T subtract(T other) {
+    public T subtract(T other) {
         return add(other.negate());
     }
     /**
@@ -44,7 +54,7 @@ public interface Vector<T extends Vector<T>> {
      * @param divisor  The amount by which to scale down this vector.
      * @return  This vector scaled down by the specified amount.
      */
-    public default T divide(Scalar divisor) {
+    public T divide(Scalar divisor) {
         return scale(divisor.inverse());
     }
 }
