@@ -2,6 +2,7 @@ package edu.hmc.math19;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Supplier;
 
 /** An element of a real normed vector space */
 public abstract class Vector<T extends Vector<T>> {
@@ -11,7 +12,7 @@ public abstract class Vector<T extends Vector<T>> {
      * @key The Child Vector
      * @Value The assosiated gradient
      */
-    protected Map<Vector<?>, Vector<?>> parentEdges = new HashMap<>();
+    protected Map<Vector<?>, Supplier<Vector<?>>> parentEdges = new HashMap<>();
     /**
      * Adds this vector and another vector.
      * 
