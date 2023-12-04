@@ -86,11 +86,10 @@ public class Scalar extends Vector<Scalar> {
      * @return The derivative of this scalar with respect to the specified scalar.
      */
     public Scalar diff(Scalar target) {
+        if(this == target) return new Scalar(1);
         Scalar grad = new Scalar(0);
         for(Entry<Scalar, Supplier<Scalar>> entry : parentEdges.entrySet()){
-            if(entry.getKey() == this){
-                grad.add(entry.getValue().get().scale(entry.getKey().diff(target)));
-            }
+            grad = grad.add(entry.getValue().get().scale(entry.getKey().diff(target)));
         }
         return grad;
         
