@@ -92,6 +92,20 @@ public class Scalar extends Vector<Scalar> {
             grad = grad.add(entry.getValue().get().scale(entry.getKey().diff(target)));
         }
         return grad;
-        
+    }
+    
+    /**
+     * Computes a partial derivative of this scalar with respect to a vector.
+     * 
+     * @param target  The NVector variable with respect to which the derivative
+     *  will be computed
+     * @return The derivative of this scalar with respect to the specified NVector.
+     */
+    public NVector grad(NVector target) {
+        Scalar[] grad = new Scalar[target.dimension()];
+        for(int i = 0; i < target.dimension(); i++){
+            grad[i] = this.diff(target.get(i));
+        }
+        return new NVector(grad);
     }
 }
