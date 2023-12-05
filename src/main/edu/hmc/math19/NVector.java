@@ -59,4 +59,39 @@ public class NVector extends Vector<NVector> {
             product = product.add(get(i).scale(other.get(i)));
         return product;
     }
+
+    /**
+     * Computes the divergence of this vector.
+     * 
+     * @param bases  The basis variables of the space.
+     * @return  The divergence of this vector with respect to the provided bases.
+     */
+    public Scalar div(Scalar... bases) {
+        if(bases.length != dimension())
+            throw new RuntimeException(
+                "The divergence of a vector field is defined only over a space of the same dimension.");
+        Scalar div = new Scalar(0);
+        for(int i = 0; i < dimension(); i++){
+            div = div.add(get(i).diff(bases[i]));
+        }
+        return div;
+    }
+
+    /** Computes the 3D curl of this vector. */
+    public NVector curl(Scalar x, Scalar y, Scalar z) {
+        if(dimension() != 3)
+            throw new RuntimeException("3D vector curl is only defined for 3D vectors");
+        return new NVector(
+            get(2).diff(y).subtract(get(1).diff(z)),
+            get(0).diff(z).subtract(get(2).diff(x)),
+            get(1).diff(x).subtract(get(0).diff(y))
+        );
+    }
+
+    /** Computes the 2D curl of this vector. */
+    public Scalar curl(Scalar x, Scalar y) {
+        if(dimension() != 2)
+            throw new RuntimeException("Scalar curl is only defined for 2D vectors");
+        return get(1).diff(x).subtract(get(0).diff(y));
+    }
 }
