@@ -13,7 +13,9 @@ public class NVector extends Vector<NVector> {
     }
     /** Constructs a constant vector from its components. */
     public NVector(double... data) {
-        this.data = (Scalar[])Arrays.stream(data).mapToObj(i -> new Scalar(i)).toArray();
+        this.data = new Scalar[data.length];
+        for(int i = 0; i < data.length; i++)
+            this.data[i] = new Scalar(data[i]);
     }
 
     /** Returns the dimensionality of this vector. */
@@ -93,5 +95,21 @@ public class NVector extends Vector<NVector> {
         if(dimension() != 2)
             throw new RuntimeException("Scalar curl is only defined for 2D vectors");
         return get(1).diff(x).subtract(get(0).diff(y));
+    }
+
+    /**
+     * Computes the cross of this vector cross other vector.
+     * 
+     * @param other The NVector of three dimensions you would like to cross this vector with.
+     * @return The result of crossing this vector with the other vector
+     */
+    public NVector cross(NVector other){
+        if(dimension() !=3 || other.dimension() !=3)
+            throw new RuntimeException("Cross is only defined for two 3D vectors.");
+            return new NVector(
+                get(1).scale(other.get(2)).add(get(2).scale(other.get(1).negate())),
+                get(0).scale(other.get(2)).add(get(2).scale(other.get(0).negate())).negate(),
+                get(0).scale(other.get(1)).add(get(1).scale(other.get(0).negate()))
+                );
     }
 }

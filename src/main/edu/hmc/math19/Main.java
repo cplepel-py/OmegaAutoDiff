@@ -18,5 +18,10 @@ public class Main {
         System.out.printf("df/dy = %.2f\n", f.diff(y).getValue());
         System.out.printf("df/dz = %.2f\n", f.diff(z).getValue());
         System.out.printf("d/dx x^2 = %.2f", g.diff(x).getValue());
+        System.out.println();
+        NVector a = new NVector(1,2,3);
+        NVector b = new NVector(3,2,1);
+        NVector aCb = a.cross(b);
+        System.out.printf("x=%.2f, y=%.2f, z=%.2f\n", aCb.get(0).getValue(), aCb.get(1).getValue(),aCb.get(2).getValue());
     }
 }
