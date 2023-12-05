@@ -1,12 +1,3 @@
 # OmegaAutoDiff: A Java Autodifferentiation Engine
 
-OmegaAutoDiff is a pure-Java autodifferentiation package.
-
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+OmegaAutoDiff is a pure-Java autodifferentiation package. It provides a framefork for differentiating single and multivariate functions through scalar and vector operations with respect to any variable involved in the computation graph. The Scalar class provides allows for the automatic computation of partial derivatives and gradients of mutlivariate functions. In addition, the NVcector class defines methods for computing the divergence and curl of vector-valued functions. The returned  partial derivatives, gradients, divergence, and curl values are themselves added to the computation graph, allowing for the calculation of second and higher order derivatives.
