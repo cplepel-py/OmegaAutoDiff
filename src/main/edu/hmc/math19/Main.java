@@ -23,5 +23,9 @@ public class Main {
         NVector b = new NVector(3,2,1);
         NVector aCb = a.cross(b);
         System.out.printf("x=%.2f, y=%.2f, z=%.2f\n", aCb.get(0).getValue(), aCb.get(1).getValue(),aCb.get(2).getValue());
+        System.out.println();
+        Scalar t = new Scalar(Math.PI);
+        Scalar h = t.cos();
+        System.out.printf("sin(pi) = %.2f , derivative: %.2f", h.getValue(), h.diff(h).getValue());
     }
 }

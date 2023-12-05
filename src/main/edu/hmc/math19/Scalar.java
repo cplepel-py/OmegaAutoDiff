@@ -130,4 +130,13 @@ public class Scalar extends Vector<Scalar> {
         edges.put(this, () -> this.cos().negate());
         return new Scalar(Math.cos(this.value), edges);
     }
+
+    /**
+     * Computes the tangent of this scalar.
+     * 
+     * @return The tangent of this scalar.
+     */
+    public Scalar tan(){
+        return this.sin().scale(this.cos().inverse());
+    }
 }
