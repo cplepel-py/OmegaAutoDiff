@@ -23,11 +23,10 @@ public class Main {
         NVector b = new NVector(3,2,1);
         NVector aCb = a.cross(b);
         System.out.println();
-        System.out.println("(1,2,3) cross (3,2,1)");
-        System.out.printf("x=%.2f, y=%.2f, z=%.2f\n", aCb.get(0).getValue(), aCb.get(1).getValue(),aCb.get(2).getValue());
+        System.out.printf(" (1,2,3) cross (3,2,1) = (%.2f, %.2f, %.2f)\n", aCb.get(0).getValue(), aCb.get(1).getValue(),aCb.get(2).getValue());
         System.out.println();
         Scalar t = new Scalar(Math.PI);
         Scalar h = t.cos();
-        System.out.printf("cos(pi) = %.2f , derivative: %.2f", h.getValue(), h.diff(t).getValue());
+        System.out.printf("cos(pi) = %.2f , derivative with respect to pi: %.2f", h.getValue(), h.diff(t).getValue());
     }
 }
