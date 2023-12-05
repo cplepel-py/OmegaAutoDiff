@@ -108,4 +108,26 @@ public class Scalar extends Vector<Scalar> {
         }
         return new NVector(grad);
     }
+
+    /**
+     * Computes the sin of this scalar.
+     * 
+     * @return The sin of this scalar.
+     */
+    public Scalar sin(){
+         Map<Scalar, Supplier<Scalar>> edges = new HashMap<>();
+         edges.put(this, () -> this.cos());
+         return new Scalar(Math.sin(this.value), edges);
+    }
+
+    /**
+     * Computes the cos of this scalar.
+     * 
+     * @return The cos of this scalar.
+     */
+    public Scalar cos(){
+        Map<Scalar, Supplier<Scalar>> edges = new HashMap<>();
+        edges.put(this, () -> this.cos().negate());
+        return new Scalar(Math.cos(this.value), edges);
+    }
 }
