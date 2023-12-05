@@ -127,7 +127,7 @@ public class Scalar extends Vector<Scalar> {
      */
     public Scalar cos(){
         Map<Scalar, Supplier<Scalar>> edges = new HashMap<>();
-        edges.put(this, () -> this.cos().negate());
+        edges.put(this, () -> this.sin().negate());
         return new Scalar(Math.cos(this.value), edges);
     }
 
